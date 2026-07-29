@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { lazy, Suspense } from "react";
 import heroShowroom from "../../assets/hero-showroom.jpg";
 
@@ -6,11 +6,14 @@ const HeroScene = lazy(() =>
   import("./HeroScene").then((m) => ({ default: m.HeroScene })),
 );
 
-const fadeUp = {
+const EASE = [0.19, 1, 0.22, 1] as const;
+
+const fadeUp: Variants = {
   hidden: { opacity: 0, y: 30 },
   show: (i: number) => ({
-    opacity: 1, y: 0,
-    transition: { delay: 2.8 + i * 0.15, duration: 1, ease: [0.19, 1, 0.22, 1] },
+    opacity: 1,
+    y: 0,
+    transition: { delay: 2.8 + i * 0.15, duration: 1, ease: EASE },
   }),
 };
 
