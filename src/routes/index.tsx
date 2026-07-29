@@ -1,24 +1,51 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { CustomCursor } from "../components/timber/CustomCursor";
+import { SmoothScroll } from "../components/timber/SmoothScroll";
+import { LoadingScreen } from "../components/timber/LoadingScreen";
+import { Navigation } from "../components/timber/Navigation";
+import { Hero } from "../components/timber/Hero";
+import { Marquee } from "../components/timber/Marquee";
+import { Products } from "../components/timber/Products";
+import { Collections } from "../components/timber/Collections";
+import { Atelier } from "../components/timber/Atelier";
+import { Manifesto } from "../components/timber/Manifesto";
+import { Footer } from "../components/timber/Footer";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "TIMBER — A Living Atelier for Luxury Menswear" },
+      {
+        name: "description",
+        content:
+          "Step into the TIMBER showroom. Interactive luxury menswear — hand-tailored garments, cinematic collections, and a wardrobe cut for the modern gentleman.",
+      },
+      { property: "og:title", content: "TIMBER — A Living Atelier for Luxury Menswear" },
+      { property: "og:description", content: "Interactive luxury menswear. Hand-tailored, cinematic, uncompromising." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <>
+      <LoadingScreen />
+      <CustomCursor />
+      <SmoothScroll>
+        <Navigation />
+        <main className="relative">
+          <Hero />
+          <Marquee />
+          <Products />
+          <Collections />
+          <Atelier />
+          <Manifesto />
+          <Footer />
+        </main>
+      </SmoothScroll>
+    </>
   );
 }
