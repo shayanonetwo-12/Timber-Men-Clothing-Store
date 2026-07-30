@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { CustomCursor } from "../components/timber/CustomCursor";
+
 import { SmoothScroll } from "../components/timber/SmoothScroll";
 import { LoadingScreen } from "../components/timber/LoadingScreen";
 import { Navigation } from "../components/timber/Navigation";
@@ -33,7 +33,7 @@ function Index() {
   return (
     <>
       <LoadingScreen />
-      <CustomCursor />
+      
       <SmoothScroll>
         <Navigation />
         <main className="relative">

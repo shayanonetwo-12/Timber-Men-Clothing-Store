@@ -97,10 +97,6 @@
     font-weight: 400;
     letter-spacing: -0.02em;
   }
-  /* Custom cursor: hide native on desktop */
-  @media (hover: hover) and (pointer: fine) {
-    html, body, * { cursor: none !important; }
-  }
   ::selection {
     background: var(--gold);
     color: var(--background);
