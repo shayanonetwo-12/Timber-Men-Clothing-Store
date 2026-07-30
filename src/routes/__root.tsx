@@ -11,6 +11,10 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { ShopProvider } from "../lib/shop";
+import { ShopOverlays } from "../components/timber/ShopOverlays";
+import { Concierge } from "../components/timber/Concierge";
+import { Toaster } from "../components/ui/sonner";
 
 function NotFoundComponent() {
   return (
@@ -98,7 +102,12 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   return (
     <QueryClientProvider client={queryClient}>
-      <Outlet />
+      <ShopProvider>
+        <Outlet />
+        <ShopOverlays />
+        <Concierge />
+        <Toaster position="bottom-left" />
+      </ShopProvider>
     </QueryClientProvider>
   );
 }
