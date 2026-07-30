@@ -33,7 +33,7 @@ function Index() {
   return (
     <>
       <LoadingScreen />
-      <CustomCursor />
+      
       <SmoothScroll>
         <Navigation />
         <main className="relative">
