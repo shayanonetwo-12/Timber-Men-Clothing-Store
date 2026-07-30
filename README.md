@@ -1,604 +1,343 @@
-# TIMBER Showroom
+# 👔 TIMBER
 
-TIMBER 2.0
+## Premium Men's Fashion E-Commerce Platform
 
-Ultra-Premium Fully Animated Men's Fashion Website PRD
+<div align="center">
 
-Design Philosophy
+### **Wear Confidence. Own Every Moment.**
 
-The website should feel alive.
+A modern, fully responsive, animation-rich men's clothing store built with cutting-edge web technologies to deliver a luxurious online shopping experience.
 
-Every scroll, click, hover, transition, and purchase should feel cinematic.
+### 🌐 Live Demo
 
-The user should feel like they are walking through an interactive luxury fashion showroom rather than browsing a traditional ecommerce site.
+**https://timber-men-clothing-store.vercel.app**
 
-Animation Principles
+---
 
- 60 FPS everywhere
+![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=nextdotjs)
+![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-Deployed-black?style=for-the-badge&logo=vercel)
 
- GPU-accelerated animations
+</div>
 
- Smooth physics-based motion
+---
 
- Premium easing curves
+# ✨ Overview
 
- Zero lag
+TIMBER is a premium men's fashion e-commerce website designed with a modern luxury aesthetic and an immersive shopping experience. Every section has been crafted to create an engaging user journey, combining elegant UI, smooth animations, and responsive layouts.
 
- Motion should guide attention, not distract
+The goal is to deliver a clean, high-performance online clothing store that feels premium across every interaction.
 
- Every page transition is unique
+---
 
- Every interaction has visual feedback
+# 🚀 Live Website
 
- Every animation must have a purpose
+## 🌍 Production
 
-Hero Experience
+👉 https://timber-men-clothing-store.vercel.app
 
-Instead of a normal banner:
+---
 
-A full-screen cinematic fashion experience.
+# 🎯 Features
 
-Background
+## 🏠 Landing Page
 
- Animated luxury showroom
+- Premium Hero Section
+- Modern Clothing Showcase
+- Animated Call-To-Action
+- Responsive Design
+- Luxury Color Palette
+- Smooth Scroll Experience
 
- Dynamic lighting
+---
 
- Soft volumetric light rays
+## 👕 Product Catalog
 
- Floating dust particles
+- Featured Products
+- New Arrivals
+- Best Sellers
+- Product Cards
+- Product Images
+- Pricing Display
+- Ratings
+- Quick Actions
+- Product Details
 
- Moving camera
+---
 
- Cloth flowing naturally
+## 🛒 Shopping Experience
 
- Interactive environment
+- Shopping Cart
+- Wishlist
+- Search Bar
+- Product Categories
+- Responsive Product Grid
+- Product Filtering
+- Product Sorting
+- Quantity Controls
+- Seamless Navigation
 
- Day/night lighting transition
+---
 
-Hero Model
+## ❤️ User Experience
 
-A realistic 3D male model wearing TIMBER clothing.
+- Modern UI
+- Premium Layout
+- Fully Responsive
+- Mobile Friendly
+- Desktop Optimized
+- Tablet Optimized
+- Clean Design
+- Elegant Typography
+- Fast Loading
+- Accessible Components
 
-Capabilities:
+---
 
- Rotates slowly
+## 🎨 User Interface
 
- Walk cycle animation
+- Luxury Color Scheme
+- Glass Effects
+- Rounded Components
+- Soft Shadows
+- Smooth Hover Effects
+- Interactive Buttons
+- Beautiful Cards
+- Modern Icons
+- Consistent Design Language
 
- Idle breathing
+---
 
- Fabric simulation
+# ⚡ Animations
 
- Clothing wrinkles move naturally
+- Smooth Page Transitions
+- Hover Animations
+- Button Animations
+- Card Lift Effects
+- Fade Animations
+- Scale Effects
+- Motion Components
+- Interactive Navigation
+- Smooth Scrolling
+- Elegant Loading States
 
- Hair simulation
+---
 
- Accessories react to movement
+# 📱 Responsive Design
 
-When user moves mouse:
+Optimized for:
 
-Model follows cursor slightly.
+- Desktop
+- Laptop
+- Tablet
+- Mobile Phones
+- Large Displays
 
-When scrolling:
+---
 
-Camera rotates around the model.
+# 🛠 Tech Stack
 
-Interactive Clothing
+## Frontend
 
-Every clothing item is an actual 3D model.
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
 
-Examples:
+## Styling
 
-T-Shirts
+- CSS3
+- Tailwind CSS
+- Responsive Layout
+- Flexbox
+- CSS Grid
 
-Hoodies
+## Deployment
 
-Jeans
+- Vercel
 
-Shoes
+---
 
-Jackets
+# 📂 Project Structure
 
-Coats
+```
+TIMBER/
+│
+├── app/
+├── components/
+├── public/
+├── styles/
+├── hooks/
+├── lib/
+├── utils/
+├── assets/
+├── types/
+├── constants/
+├── package.json
+└── README.md
+```
 
-Caps
+---
 
-Accessories
+# ⚙ Installation
 
-Each model includes:
+Clone the repository
 
- Real fabric physics
+```bash
+git clone https://github.com/yourusername/timber.git
+```
 
- Stitch details
+Go into the project
 
- Buttons
+```bash
+cd timber
+```
 
- Zippers
+Install dependencies
 
- Normal maps
+```bash
+npm install
+```
 
- Roughness maps
+Start development server
 
- Ambient Occlusion
-
- PBR materials
-
-Product Cards
-
-Instead of flat cards:
-
-Cards float in 3D space.
-
-Hover:
-
- Card lifts
-
- Rotates slightly
-
- Shadow changes
-
- Fabric ripple
-
- Price slides in
-
- Buttons unfold
-
- Glow animation
-
-Mouse movement
-
-Cards tilt naturally.
-
-Navigation Bar
-
-Floating glass navigation.
-
-When scrolling:
-
-Navigation transforms into a compact premium bar.
-
-Hover animation:
-
-Buttons behave like folded fabric.
-
-Logo animation:
-
-Logo stitches itself together.
-
-Mega Menu
-
-Opening animation
-
-Looks like opening a wardrobe.
-
-Categories slide out like clothing racks.
-
-Items appear hanging.
-
-Each category has animated previews.
-
-Product Page
-
-Entering product page
-
-Camera flies toward clothing.
-
-Product rotates automatically.
-
-User can
-
- Rotate
-
- Zoom
-
- Change colours
-
- Change material
-
- Change size
-
- View inside stitching
-
- Exploded view
-
- Fabric close-up
-
-3D Trial Room
-
-Customers choose:
-
-Body type
-
-Height
-
-Weight
-
-Skin tone
-
-Hair
-
-Avatar wears clothing instantly.
-
-Animations
-
-Walking
-
-Turning
-
-Running
-
-Sitting
-
-Jumping
-
-Stretching
-
-Users see clothing behaviour.
-
-Fabric Physics
-
-Every cloth reacts realistically.
-
-Movement
-
-Wind
-
-Dragging
-
-Rotation
-
-Mouse interaction
-
-Real cloth simulation.
-
-Scroll Experience
-
-Every section transitions like a movie.
-
-Examples
-
-Camera flies.
-
-Walls move.
-
-Products assemble.
-
-Collections unfold.
-
-Cards stack.
-
-Images morph.
-
-Videos blend.
-
-Search Animation
-
-Search bar unfolds like measuring tape.
-
-Typing:
-
-Suggestions animate upward.
-
-Search results appear with staggered motion.
-
-Cart Experience
-
-Adding product:
-
-Product flies into cart.
-
-Cart shakes softly.
-
-Number counts upward.
-
-Mini celebration.
-
-Wishlist
-
-Heart stitches itself.
-
-Product floats toward wishlist.
-
-Checkout
-
-Checkout becomes a guided experience.
-
-Progress indicator:
-
-Thread sewing each step together.
-
-Payment success:
-
-Luxury gift box closes.
-
-Confetti made from fabric pieces.
-
-Collections
-
-Instead of grid:
-
-Interactive showroom.
-
-User walks between:
-
-Business
-
-Luxury
-
-Casual
-
-Winter
-
-Summer
-
-Streetwear
-
-Formal
-
-Every room has different atmosphere.
-
-Background Animations
-
-Entire website remains alive.
-
-Moving light
-
-Ambient particles
-
-Floating fibres
-
-Animated gradients
-
-Cloth movement
-
-Reflection changes
-
-Soft shadows
-
-Dynamic lighting
-
-Loading Screen
-
-Luxury experience.
-
-Thread begins stitching.
-
-Creates TIMBER logo.
-
-Progress shown by sewing animation.
-
-Ends with wardrobe doors opening.
-
-Cursor
-
-Custom cursor.
-
-Looks like tailoring needle.
-
-Hover:
-
-Turns into
-
-Button
-
-Scissors
-
-Hanger
-
-Shopping bag
-
-Fabric pin
-
-Depending on object.
-
-Micro Animations
-
-Every button
-
-Breathes slowly.
-
-Hover
-
-Fabric stretches.
-
-Click
-
-Soft compression.
-
-Release
-
-Elastic bounce.
-
-AI Fashion Assistant
-
-3D animated assistant.
-
-Instead of chatbot.
-
-Walks in from screen edge.
-
-Can
-
-Recommend outfits
-
-Explain fabrics
-
-Suggest sizes
-
-Track orders
-
-Build complete wardrobe
-
-Voice enabled
-
-Natural language
-
-Product Images
-
-No static gallery.
-
-Interactive carousel.
-
-Products rotate.
-
-Camera zooms.
-
-Fabric moves.
-
-Lighting changes.
-
-User controls studio lights.
-
-Reviews
-
-Review cards float.
-
-Verified badge animates.
-
-Photos expand into lightbox.
-
-Video reviews autoplay on hover.
-
-Category Experience
-
-Opening Jackets:
-
-Snow particles.
-
-Cold atmosphere.
-
-Blue lighting.
-
-Opening Summer:
-
-Warm lighting.
-
-Sun rays.
-
-Soft wind.
-
-Beach ambience.
-
-Sound Design (Optional)
-
-Luxury UI sounds.
-
-Fabric movement.
-
-Soft clicks.
-
-Button presses.
-
-Cart sound.
-
-Wardrobe opening.
-
-Checkout success.
-
-Mute option available.
-
-Premium Technologies
-
-Frontend
-
- Next.js (App Router)
-
- React
-
- TypeScript
-
- Tailwind CSS
-
- Framer Motion
-
- GSAP
-
- React Three Fiber
-
- Three.js
-
- Theatre.js (cinematic camera sequences)
-
- Lenis (smooth scrolling)
-
- Motion One
-
- Lottie
-
- Spline (interactive 3D scenes)
-
- WebGL shaders (custom visual effects)
-
-Backend
-
- NestJS
-
- Node.js
-
- PostgreSQL
-
- Prisma
-
- Redis
-
- GraphQL
-
- WebSockets (live inventory, chat, notifications)
-
-AI
-
- OpenAI API (styling assistant)
-
- Image-based outfit recommendations
-
- Smart size prediction
-
- Personalised fashion recommendations
-
-Performance Optimisation
-
- Lazy-load all 3D assets
-
- Adaptive quality based on GPU
-
- Draco-compressed 3D models
-
- KTX2 compressed textures
-
- Progressive asset streaming
-
- Server-side rendering for SEO
-
- Edge caching
-
- Image optimisation
-
- Code splitting
-
- Service Worker for offline support
-
-Overall User Journey
-
-The visitor lands in a cinematic luxury showroom, explores animated collections, interacts with lifelike 3D garments, visualises outfits on a virtual model, receives AI styling advice, and completes a seamless, highly animated checkout. Every animation reinforces the premium identity of TIMBER while maintaining excellent performance, accessibility, and responsiveness across desktop, tablet, and mobile devices.
-
-This project was built with [Lovable](https://lovable.dev).
-
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/6a3eaeb0-2e7b-4db5-8f57-8fe0208d0159).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
-
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
-
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
+```bash
 npm run dev
 ```
+
+Open
+
+```
+http://localhost:3000
+```
+
+---
+
+# 📦 Build
+
+```bash
+npm run build
+```
+
+---
+
+# 🚀 Production
+
+```bash
+npm run start
+```
+
+---
+
+# 📈 Performance Goals
+
+- Fast Page Loads
+- SEO Friendly
+- Responsive Layout
+- Optimized Images
+- Modern Architecture
+- High Lighthouse Score
+- Clean Codebase
+- Scalable Structure
+
+---
+
+# 🔥 Future Improvements
+
+- User Authentication
+- AI Fashion Assistant
+- Personalized Recommendations
+- Secure Checkout
+- Payment Gateway Integration
+- Order Tracking
+- Inventory Management
+- Customer Reviews
+- Dark Mode
+- Admin Dashboard
+- Wishlist Synchronization
+- Recently Viewed Products
+- Coupons & Promotions
+- Email Notifications
+- Loyalty Program
+
+---
+
+# 🎯 Design Philosophy
+
+TIMBER is built around three core principles:
+
+- Simplicity
+- Elegance
+- Performance
+
+Every page is designed to create a premium shopping experience while maintaining speed, usability, and responsiveness.
+
+---
+
+# 🌟 Why TIMBER?
+
+✔ Premium UI
+
+✔ Clean Architecture
+
+✔ Responsive Design
+
+✔ Elegant Animations
+
+✔ Modern Components
+
+✔ Optimized Performance
+
+✔ Scalable Codebase
+
+✔ Production Ready
+
+---
+
+# 📊 Project Status
+
+🟢 Active Development
+
+Regular improvements, UI enhancements, and new features are continuously being added.
+
+---
+
+# 🤝 Contributing
+
+Contributions are welcome!
+
+If you'd like to improve TIMBER:
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push your branch
+5. Open a Pull Request
+
+---
+
+# 📄 License
+
+This project is licensed under the MIT License.
+
+---
+
+# 👨‍💻 Developer
+
+Developed with ❤️ by **Shayan Shahid**
+
+GitHub: https://github.com/shayanonetwo-12
+
+---
+
+<div align="center">
+
+## ⭐ If you like this project, please consider giving it a Star!
+
+### Thank you for visiting TIMBER.
+
+**Wear Confidence. Own Every Moment.**
+
+</div>
