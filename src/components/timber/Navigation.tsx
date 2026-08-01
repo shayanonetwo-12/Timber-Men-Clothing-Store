@@ -1,7 +1,7 @@
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { ShoppingBag, Search, Heart, Menu } from "lucide-react";
+import { ShoppingBag, Search, Heart, Star, Menu } from "lucide-react";
 import { useShop } from "../../lib/shop";
 
 const LINKS: { label: string; hash: string }[] = [
@@ -15,7 +15,7 @@ export function Navigation() {
   const { scrollY } = useScroll();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const { openPanel, cartCount, wishlist } = useShop();
+  const { openPanel, cartCount, wishlist, favourites } = useShop();
   useMotionValueEvent(scrollY, "change", (v) => setScrolled(v > 40));
 
   return (
@@ -66,6 +66,14 @@ export function Navigation() {
             {wishlist.length > 0 && (
               <span className="absolute -right-2 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-gold text-[9px] font-medium text-background">
                 {wishlist.length}
+              </span>
+            )}
+          </button>
+          <button type="button" onClick={() => openPanel("favourites")} aria-label="Favourites" className="relative transition-colors hover:text-gold">
+            <Star size={16} className={favourites.length ? "fill-gold text-gold" : ""} />
+            {favourites.length > 0 && (
+              <span className="absolute -right-2 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-gold text-[9px] font-medium text-background">
+                {favourites.length}
               </span>
             )}
           </button>

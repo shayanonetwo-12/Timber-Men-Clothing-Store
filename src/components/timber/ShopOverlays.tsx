@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { Heart, Minus, Plus, Search, ShoppingBag, X } from "lucide-react";
+import { Heart, Minus, Plus, Search, ShoppingBag, Star, X } from "lucide-react";
 import { formatPrice, searchProducts, ROOMS } from "../../lib/catalog";
 import { useShop } from "../../lib/shop";
 
@@ -46,7 +46,7 @@ function Panel({
 }
 
 function SearchOverlay() {
-  const { closePanel, addToCart, toggleWishlist, isWishlisted } = useShop();
+  const { closePanel, addToCart, toggleWishlist, isWishlisted, toggleFavourite, isFavourite } = useShop();
   const [q, setQ] = useState("");
   const results = searchProducts(q);
 
@@ -100,8 +100,14 @@ function SearchOverlay() {
         )}
 
         <div className="mt-8 space-y-4">
-          {results.map((p) => (
-            <div key={p.id} className="flex items-center gap-5 border border-gold/10 p-3">
+          {results.map((p, i) => (
+            <motion.div
+              key={p.id}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.05, duration: 0.45, ease: [0.19, 1, 0.22, 1] }}
+              className="flex items-center gap-5 border border-gold/10 p-3 transition-colors hover:border-gold/40"
+            >
               <img src={p.img} alt={p.name} loading="lazy" width={900} height={1200} className="h-24 w-20 object-cover" />
               <div className="flex-1">
                 <h3 className="font-display text-xl">{p.name}</h3>
@@ -121,12 +127,15 @@ function SearchOverlay() {
                   <button type="button" onClick={() => toggleWishlist(p.id)} aria-label={`Save ${p.name}`} className="border border-gold/25 p-2 hover:border-gold">
                     <Heart size={13} className={isWishlisted(p.id) ? "fill-gold text-gold" : ""} />
                   </button>
+                  <button type="button" onClick={() => toggleFavourite(p.id)} aria-label={`Favourite ${p.name}`} className="border border-gold/25 p-2 hover:border-gold">
+                    <Star size={13} className={isFavourite(p.id) ? "fill-gold text-gold" : ""} />
+                  </button>
                   <button type="button" onClick={() => addToCart(p.id)} aria-label={`Add ${p.name} to bag`} className="border border-gold/25 p-2 hover:border-gold">
                     <ShoppingBag size={13} />
                   </button>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
@@ -161,6 +170,46 @@ function WishlistPanel() {
                 </div>
               </div>
             </div>
+          ))}
+        </div>
+      )}
+    </Panel>
+  );
+}
+
+function FavouritesPanel() {
+  const { closePanel, favouriteProducts, toggleFavourite, addToCart } = useShop();
+  return (
+    <Panel title="Favourites" onClose={closePanel}>
+      {favouriteProducts.length === 0 ? (
+        <p className="text-sm text-muted-foreground">
+          No favourites yet. Tap the star on any article to pin it here.
+        </p>
+      ) : (
+        <div className="space-y-5">
+          {favouriteProducts.map((p, i) => (
+            <motion.div
+              key={p.id}
+              initial={{ opacity: 0, x: 24 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: i * 0.06, duration: 0.5, ease: [0.19, 1, 0.22, 1] }}
+              className="flex gap-4"
+            >
+              <img src={p.img} alt={p.name} loading="lazy" width={900} height={1200} className="h-28 w-[5.5rem] object-cover" />
+              <div className="flex-1">
+                <h3 className="font-display text-xl">{p.name}</h3>
+                <p className="text-xs text-muted-foreground">{p.detail}</p>
+                <p className="mt-1 font-mono text-sm text-gold">{formatPrice(p.price)}</p>
+                <div className="mt-3 flex gap-3">
+                  <button type="button" onClick={() => addToCart(p.id)} className="text-[10px] uppercase tracking-[0.25em] text-gold hover:underline">
+                    Add to bag
+                  </button>
+                  <button type="button" onClick={() => toggleFavourite(p.id)} className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground hover:text-foreground">
+                    Remove
+                  </button>
+                </div>
+              </div>
+            </motion.div>
           ))}
         </div>
       )}
@@ -223,6 +272,7 @@ export function ShopOverlays() {
           <Backdrop key="backdrop" onClick={closePanel} />
           {panel === "search" && <SearchOverlay key="search" />}
           {panel === "wishlist" && <WishlistPanel key="wishlist" />}
+          {panel === "favourites" && <FavouritesPanel key="favourites" />}
           {panel === "cart" && <CartPanel key="cart" />}
         </>
       )}
