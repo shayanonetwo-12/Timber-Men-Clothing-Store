@@ -1,13 +1,13 @@
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useRef, type MouseEvent } from "react";
 import { Link } from "@tanstack/react-router";
-import { Heart } from "lucide-react";
+import { Heart, Star } from "lucide-react";
 import { PRODUCTS, formatPrice, type Product } from "../../lib/catalog";
 import { useShop } from "../../lib/shop";
 
 function ProductCard({ p, i }: { p: Product; i: number }) {
   const ref = useRef<HTMLDivElement>(null);
-  const { addToCart, toggleWishlist, isWishlisted } = useShop();
+  const { addToCart, toggleWishlist, isWishlisted, toggleFavourite, isFavourite } = useShop();
   const rx = useSpring(useMotionValue(0), { stiffness: 200, damping: 20 });
   const ry = useSpring(useMotionValue(0), { stiffness: 200, damping: 20 });
   const rxDeg = useTransform(rx, (v) => `${v}deg`);
@@ -29,8 +29,9 @@ function ProductCard({ p, i }: { p: Product; i: number }) {
       ref={ref}
       onMouseMove={onMove}
       onMouseLeave={onLeave}
-      initial={{ opacity: 0, y: 60 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y: 60, filter: "blur(10px)" }}
+      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+      whileHover={{ y: -10 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.9, delay: i * 0.08, ease: [0.19, 1, 0.22, 1] }}
       style={{ perspective: 1200 }}
@@ -55,14 +56,28 @@ function ProductCard({ p, i }: { p: Product; i: number }) {
 
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
 
-        <button
+        <div className="absolute right-4 top-4 flex flex-col gap-2">
+        <motion.button
+          whileTap={{ scale: 0.85 }}
+          whileHover={{ scale: 1.12 }}
           type="button"
           onClick={() => toggleWishlist(p.id)}
           aria-label={isWishlisted(p.id) ? `Remove ${p.name} from wishlist` : `Save ${p.name} to wishlist`}
-          className="absolute right-4 top-4 rounded-full border border-gold/30 bg-background/60 p-2 backdrop-blur transition-colors hover:border-gold"
+          className="rounded-full border border-gold/30 bg-background/60 p-2 backdrop-blur transition-colors hover:border-gold"
         >
           <Heart size={14} className={isWishlisted(p.id) ? "fill-gold text-gold" : "text-foreground/70"} />
-        </button>
+        </motion.button>
+        <motion.button
+          whileTap={{ scale: 0.85 }}
+          whileHover={{ scale: 1.12 }}
+          type="button"
+          onClick={() => toggleFavourite(p.id)}
+          aria-label={isFavourite(p.id) ? `Remove ${p.name} from favourites` : `Add ${p.name} to favourites`}
+          className="rounded-full border border-gold/30 bg-background/60 p-2 backdrop-blur transition-colors hover:border-gold"
+        >
+          <Star size={14} className={isFavourite(p.id) ? "fill-gold text-gold" : "text-foreground/70"} />
+        </motion.button>
+        </div>
 
         <div className="absolute inset-x-6 bottom-6 flex items-end justify-between">
           <div>
