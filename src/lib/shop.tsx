@@ -11,11 +11,12 @@ import { toast } from "sonner";
 import { PRODUCTS, productById, type Product } from "./catalog";
 
 export type CartLine = { id: string; qty: number };
-export type PanelId = "search" | "wishlist" | "cart" | null;
+export type PanelId = "search" | "wishlist" | "favourites" | "cart" | null;
 
 type ShopContextValue = {
   cart: CartLine[];
   wishlist: string[];
+  favourites: string[];
   cartCount: number;
   cartTotal: number;
   panel: PanelId;
@@ -26,6 +27,9 @@ type ShopContextValue = {
   removeFromCart: (id: string) => void;
   toggleWishlist: (id: string) => void;
   isWishlisted: (id: string) => boolean;
+  toggleFavourite: (id: string) => void;
+  isFavourite: (id: string) => boolean;
+  favouriteProducts: Product[];
   cartProducts: { product: Product; qty: number }[];
   wishlistProducts: Product[];
 };
@@ -34,6 +38,7 @@ const ShopContext = createContext<ShopContextValue | null>(null);
 
 const CART_KEY = "timber.cart";
 const WISH_KEY = "timber.wishlist";
+const FAV_KEY = "timber.favourites";
 
 function read<T>(key: string, fallback: T): T {
   if (typeof window === "undefined") return fallback;
@@ -48,12 +53,14 @@ function read<T>(key: string, fallback: T): T {
 export function ShopProvider({ children }: { children: ReactNode }) {
   const [cart, setCart] = useState<CartLine[]>([]);
   const [wishlist, setWishlist] = useState<string[]>([]);
+  const [favourites, setFavourites] = useState<string[]>([]);
   const [panel, setPanel] = useState<PanelId>(null);
   const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
     setCart(read<CartLine[]>(CART_KEY, []));
     setWishlist(read<string[]>(WISH_KEY, []));
+    setFavourites(read<string[]>(FAV_KEY, []));
     setHydrated(true);
   }, []);
 
@@ -64,6 +71,10 @@ export function ShopProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (hydrated) window.localStorage.setItem(WISH_KEY, JSON.stringify(wishlist));
   }, [wishlist, hydrated]);
+
+  useEffect(() => {
+    if (hydrated) window.localStorage.setItem(FAV_KEY, JSON.stringify(favourites));
+  }, [favourites, hydrated]);
 
   const addToCart = useCallback((id: string, qty = 1) => {
     const p = productById(id);
@@ -97,6 +108,15 @@ export function ShopProvider({ children }: { children: ReactNode }) {
     });
   }, []);
 
+  const toggleFavourite = useCallback((id: string) => {
+    const p = productById(id);
+    setFavourites((prev) => {
+      const has = prev.includes(id);
+      if (p) toast(has ? `${p.name} removed from favourites` : `${p.name} added to favourites`);
+      return has ? prev.filter((f) => f !== id) : [...prev, id];
+    });
+  }, []);
+
   const value = useMemo<ShopContextValue>(() => {
     const cartProducts = cart
       .map((l) => ({ product: PRODUCTS.find((p) => p.id === l.id)!, qty: l.qty }))
@@ -104,6 +124,7 @@ export function ShopProvider({ children }: { children: ReactNode }) {
     return {
       cart,
       wishlist,
+      favourites,
       panel,
       cartCount: cart.reduce((s, l) => s + l.qty, 0),
       cartTotal: cartProducts.reduce((s, l) => s + l.product.price * l.qty, 0),
@@ -114,12 +135,17 @@ export function ShopProvider({ children }: { children: ReactNode }) {
       removeFromCart,
       toggleWishlist,
       isWishlisted: (id: string) => wishlist.includes(id),
+      toggleFavourite,
+      isFavourite: (id: string) => favourites.includes(id),
+      favouriteProducts: favourites
+        .map((id) => PRODUCTS.find((p) => p.id === id))
+        .filter((p): p is Product => Boolean(p)),
       cartProducts,
       wishlistProducts: wishlist
         .map((id) => PRODUCTS.find((p) => p.id === id))
         .filter((p): p is Product => Boolean(p)),
     };
-  }, [cart, wishlist, panel, addToCart, setQty, removeFromCart, toggleWishlist]);
+  }, [cart, wishlist, favourites, panel, addToCart, setQty, removeFromCart, toggleWishlist, toggleFavourite]);
 
   return <ShopContext.Provider value={value}>{children}</ShopContext.Provider>;
 }
