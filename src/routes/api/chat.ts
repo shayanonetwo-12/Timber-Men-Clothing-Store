@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { convertToModelMessages, streamText, type UIMessage } from "ai";
-import { createLovableAiGatewayProvider } from "../../lib/ai-gateway.server";
+import { createGeminiProvider } from "../../lib/gemini.server";
+
 
 const CATALOGUE = `
 Formal room (/rooms/formal):
@@ -43,12 +44,13 @@ export const Route = createFileRoute("/api/chat")({
           return new Response("Messages are required", { status: 400 });
         }
 
-        const key = process.env.LOVABLE_API_KEY;
-        if (!key) return new Response("Missing LOVABLE_API_KEY", { status: 500 });
+        const key = process.env.GEMINI_API_KEY;
+        if (!key) return new Response("Missing GEMINI_API_KEY", { status: 500 });
 
-        const gateway = createLovableAiGatewayProvider(key);
+        const google = createGeminiProvider(key);
         const result = streamText({
-          model: gateway("google/gemini-3.5-flash"),
+          model: google("gemini-3.5-flash"),
+
           system: SYSTEM,
           messages: await convertToModelMessages(messages as UIMessage[]),
         });
