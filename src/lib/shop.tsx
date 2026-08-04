@@ -24,6 +24,8 @@ type ShopContextValue = {
   cartCount: number;
   cartTotal: number;
   panel: PanelId;
+  syncing: boolean;
+
   openPanel: (p: Exclude<PanelId, null>) => void;
   closePanel: () => void;
   addToCart: (id: string, qty?: number) => void;
