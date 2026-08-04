@@ -15,6 +15,7 @@ import { ShopProvider } from "../lib/shop";
 import { ShopOverlays } from "../components/timber/ShopOverlays";
 import { Concierge } from "../components/timber/Concierge";
 import { Toaster } from "../components/ui/sonner";
+import { initFirebaseAnalytics } from "../lib/firebase";
 
 function NotFoundComponent() {
   return (
@@ -100,9 +101,13 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  useEffect(() => {
+    void initFirebaseAnalytics();
+  }, []);
   return (
     <QueryClientProvider client={queryClient}>
       <ShopProvider>
+
         <Outlet />
         <ShopOverlays />
         <Concierge />
