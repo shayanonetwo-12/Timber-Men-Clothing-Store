@@ -4,14 +4,18 @@ import {
   useContext,
   useEffect,
   useMemo,
+  useRef,
   useState,
   type ReactNode,
 } from "react";
 import { toast } from "sonner";
 import { PRODUCTS, productById, type Product } from "./catalog";
+import { useAuth } from "./auth";
+import { EMPTY_WARDROBE, fetchWardrobe, mergeWardrobes, saveWardrobe } from "./wardrobe";
 
 export type CartLine = { id: string; qty: number };
-export type PanelId = "search" | "wishlist" | "favourites" | "cart" | null;
+export type PanelId = "search" | "wishlist" | "favourites" | "cart" | "account" | null;
+
 
 type ShopContextValue = {
   cart: CartLine[];
