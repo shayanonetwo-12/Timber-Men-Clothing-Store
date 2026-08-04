@@ -201,7 +201,7 @@ export function ShopProvider({ children }: { children: ReactNode }) {
         .map((id) => PRODUCTS.find((p) => p.id === id))
         .filter((p): p is Product => Boolean(p)),
     };
-  }, [cart, wishlist, favourites, panel, addToCart, setQty, removeFromCart, toggleWishlist, toggleFavourite]);
+  }, [cart, wishlist, favourites, panel, syncing, addToCart, setQty, removeFromCart, toggleWishlist, toggleFavourite]);
 
   return <ShopContext.Provider value={value}>{children}</ShopContext.Provider>;
 }
