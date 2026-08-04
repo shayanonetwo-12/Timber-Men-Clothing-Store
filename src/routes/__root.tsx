@@ -101,8 +101,11 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  useEffect(() => {
+    void initFirebaseAnalytics();
+  }, []);
   return (
-    <QueryClientProvider client={queryClient}>
+
       <ShopProvider>
         <Outlet />
         <ShopOverlays />
