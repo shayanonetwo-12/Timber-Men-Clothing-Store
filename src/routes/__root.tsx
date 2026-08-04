@@ -12,6 +12,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { ShopProvider } from "../lib/shop";
+import { AuthProvider } from "../lib/auth";
 import { ShopOverlays } from "../components/timber/ShopOverlays";
 import { Concierge } from "../components/timber/Concierge";
 import { Toaster } from "../components/ui/sonner";
@@ -106,6 +107,7 @@ function RootComponent() {
   }, []);
   return (
     <QueryClientProvider client={queryClient}>
+      <AuthProvider>
       <ShopProvider>
 
         <Outlet />
@@ -113,6 +115,7 @@ function RootComponent() {
         <Concierge />
         <Toaster position="bottom-left" />
       </ShopProvider>
+      </AuthProvider>
     </QueryClientProvider>
   );
 }

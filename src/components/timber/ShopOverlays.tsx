@@ -4,6 +4,7 @@ import { Link } from "@tanstack/react-router";
 import { Heart, Minus, Plus, Search, ShoppingBag, Star, X } from "lucide-react";
 import { formatPrice, searchProducts, ROOMS } from "../../lib/catalog";
 import { useShop } from "../../lib/shop";
+import { AccountPanel } from "./AccountPanel";
 
 function Backdrop({ onClick }: { onClick: () => void }) {
   return (
@@ -274,6 +275,7 @@ export function ShopOverlays() {
           {panel === "wishlist" && <WishlistPanel key="wishlist" />}
           {panel === "favourites" && <FavouritesPanel key="favourites" />}
           {panel === "cart" && <CartPanel key="cart" />}
+          {panel === "account" && <AccountPanel key="account" />}
         </>
       )}
     </AnimatePresence>
