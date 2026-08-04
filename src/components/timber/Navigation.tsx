@@ -1,8 +1,9 @@
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { ShoppingBag, Search, Heart, Star, Menu } from "lucide-react";
+import { ShoppingBag, Search, Heart, Star, Menu, User } from "lucide-react";
 import { useShop } from "../../lib/shop";
+import { useAuth } from "../../lib/auth";
 
 const LINKS: { label: string; hash: string }[] = [
   { label: "Collections", hash: "collections" },
@@ -16,6 +17,7 @@ export function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const { openPanel, cartCount, wishlist, favourites } = useShop();
+  const { user, displayName } = useAuth();
   useMotionValueEvent(scrollY, "change", (v) => setScrolled(v > 40));
 
   return (
@@ -85,6 +87,15 @@ export function Navigation() {
               </span>
             )}
           </button>
+          <button
+            type="button"
+            onClick={() => openPanel("account")}
+            aria-label={user ? `Account — ${displayName}` : "Sign in"}
+            className="relative transition-colors hover:text-gold"
+          >
+            <User size={16} className={user ? "text-gold" : ""} />
+            {user && <span className="absolute -right-1 -top-1 h-1.5 w-1.5 rounded-full bg-gold" />}
+          </button>
           <button type="button" onClick={() => setMobileOpen((o) => !o)} aria-label="Menu" className="transition-colors hover:text-gold md:hidden">
             <Menu size={18} />
           </button>
@@ -108,6 +119,13 @@ export function Navigation() {
               {l.label}
             </Link>
           ))}
+          <button
+            type="button"
+            onClick={() => { setMobileOpen(false); openPanel("account"); }}
+            className="text-left text-[11px] uppercase tracking-[0.28em] text-foreground/80 hover:text-gold"
+          >
+            {user ? `Account — ${displayName}` : "Sign in"}
+          </button>
           <Link to="/rooms/$roomId" params={{ roomId: "formal" }} onClick={() => setMobileOpen(false)} className="text-[11px] uppercase tracking-[0.28em] text-gold">
             Formal room
           </Link>
