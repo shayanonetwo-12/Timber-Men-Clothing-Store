@@ -105,8 +105,9 @@ function RootComponent() {
     void initFirebaseAnalytics();
   }, []);
   return (
-
+    <QueryClientProvider client={queryClient}>
       <ShopProvider>
+
         <Outlet />
         <ShopOverlays />
         <Concierge />
