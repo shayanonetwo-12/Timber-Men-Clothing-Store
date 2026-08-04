@@ -15,6 +15,7 @@ import { ShopProvider } from "../lib/shop";
 import { ShopOverlays } from "../components/timber/ShopOverlays";
 import { Concierge } from "../components/timber/Concierge";
 import { Toaster } from "../components/ui/sonner";
+import { initFirebaseAnalytics } from "../lib/firebase";
 
 function NotFoundComponent() {
   return (
