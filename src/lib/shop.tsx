@@ -180,6 +180,8 @@ export function ShopProvider({ children }: { children: ReactNode }) {
       wishlist,
       favourites,
       panel,
+      syncing,
+
       cartCount: cart.reduce((s, l) => s + l.qty, 0),
       cartTotal: cartProducts.reduce((s, l) => s + l.product.price * l.qty, 0),
       openPanel: (p) => setPanel(p),
